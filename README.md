@@ -91,6 +91,8 @@ In this exercise you will:
    * Run `./solutions/sample` and confirm it prints `Hello, PP7!`.
 6. **Explain** in comments or a short README how each stage transforms the code.
 
+Aufgabe 1: 
+https://github.com/Daemon1260/PP7
 ---
 
 ### Task 2: Regex Search & Replace in Code
@@ -131,6 +133,25 @@ In this exercise you will:
    vim -c ":%s/printf/debug_printf/g" -c ":wq" solutions/debug_sample.c
    ```
 7. **Explain** each tool’s approach to regex-based search and replace, and when you might prefer one over the others.
+
+Aufgabe 2.7:
+
+grep -En "printf\s*\(" debug_sample.c
+   3:    printf("Hello, PP7!\n");
+
+
+sed – Ersetze printf durch debug_printf
+        sed -E -i.bak 's/printf\s*\(/debug_printf(/g' debug_sample.c
+
+awk – Zeige alle Zeilen mit debug_printf
+        awk '/debug_printf/ { print NR, $0 }' debug_sample.c
+        3 debug_printf("Hello, PP7!\n");
+
+Vim – Interaktive Ersetzung
+        Befehl: :%s/printf/debug_printf/g
+
+Vim CLI – Automatisch ersetzen
+        vim -c ":%s/printf/debug_printf/g" -c ":wq" debug_sample.c
 
 ---
 
@@ -176,6 +197,12 @@ In this exercise you will:
    * The role of `extern` declarations.
    * Why separating compilation can speed up builds.
    * How manual linking differs from letting `gcc` handle all steps in one command.
+
+- Aufgabe 3.6:
+   Die extern-Deklaration in main.c sagt dem Compiler, dass add in einer anderen Datei definiert ist.
+   Durch getrennte Kompilierung kannst du bei Änderungen nur die betroffenen Dateien neu kompilieren, was den Build       
+   beschleunigt.
+   Manuelles Linken erlaubt dir volle Kontrolle über die Verknüpfung, während gcc in einem Schritt alles erledigen kann.
 
 ---
 
